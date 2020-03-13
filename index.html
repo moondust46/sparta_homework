@@ -6,11 +6,78 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>2020년 핫한 감자</title>
 
-    <link rel = "stylesheet" type = "text/css" href = "style.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Do+Hyeon&display=swap" rel="stylesheet">
+
+    <!-- JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
 </head>
 
 <body>
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/%EC%84%9C%EC%82%B0_9%ED%92%88_%EA%B0%90%EC%9E%90.jpg/800px-%EC%84%9C%EC%82%B0_9%ED%92%88_%EA%B0%90%EC%9E%90.jpg">
+
+    <div class="img">
+        <img
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/%EC%84%9C%EC%82%B0_9%ED%92%88_%EA%B0%90%EC%9E%90.jpg/800px-%EC%84%9C%EC%82%B0_9%ED%92%88_%EA%B0%90%EC%9E%90.jpg">
+    </div>
+
+    <div class="box">
+        <div>
+            <h2>2020년 봄을 뜨겁게 달군 감자를 팝니다</h2>
+            <h5>가격: 5,000원 / 10kg </h5>
+            <p>
+                <br>도지사도 판다는 2020년 핫한 강원도 감자가 10kg에 무려 5,000원!!
+                <br>서버가 터져버릴 정도로 인기만점!!
+                <br>지금 안사면 언제 살 수 있을지 모른다구요~
+            </P>
+        </div>
+
+        <div>
+            <h1>주문하기</h1>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">주문자 이름:</span>
+                </div>
+                <input type="text" class="form-control" placeholder="이름을 입력해주세요." aria-label="Username"
+                    aria-describedby="basic-addon1">
+            </div>
+
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <label class="input-group-text" for="inputGroupSelect01">수량</label>
+                </div>
+                <select class="custom-select" id="inputGroupSelect01">
+                    <option selected>골라보세요</option>
+                    <option value="1">10kg 1box</option>
+                    <option value="2">10kg 10box</option>
+                    <option value="3">10kg 50box</option>
+                </select>
+            </div>
+
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">주소:</span>
+                </div>
+                <input type="text" class="form-control" placeholder="배송은 어디로 받으실래요?" aria-label="Username"
+                    aria-describedby="basic-addon1">
+            </div>
+
+            <br>
+            <br>
+            <br>
+            <button type="button" class="btn btn-secondary btn-lg btn-block">주문하기!!</button>
+
+        </div>
+    </div>
 </body>
 
 </html>
