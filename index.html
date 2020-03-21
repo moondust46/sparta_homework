@@ -20,6 +20,45 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        function order() {
+            let name = $('#order_name').val();
+            let count = $('#order_count').val();
+            let address = $('#order_address').val();
+            let phone = $('#order_phone').val();
+
+            if (name == '') {
+                alert('이름을 입력해주세요')
+                $('#order_name').focus()
+                return
+            } else if (count == '') {
+                alert('수량을 입력해주세요')
+                $('#order_count').focus()
+                return
+            } else if (address == '') {
+                alert('주소를 입력해주세요')
+                $('#order_address').focus()
+                return
+            }
+            else if (phone == '') {
+                alert('연락처를 입력해주세요')
+                $('#order_phone').focus()
+                return
+            }
+        }
+        $.ajax({
+            type: "POST",
+            url: "/order",
+            data: { name_give: name, count_give: count, address_give: address, phone_give: phone },
+            success: function (response) {
+                if (response['result'] == 'success') {
+                    alert('주문 완료!');
+                    window.location.reload();
+                }
+            }
+        })
+
+    </script>
 
 </head>
 
@@ -46,15 +85,15 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="basic-addon1">주문자 이름:</span>
                 </div>
-                <input type="text" class="form-control" placeholder="이름을 입력해주세요." aria-label="Username"
+                <input type="text" class="form-control" id="order_name" placeholder="이름을 입력해주세요." aria-label="Username"
                     aria-describedby="basic-addon1">
             </div>
 
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
-                    <label class="input-group-text" for="inputGroupSelect01">수량</label>
+                    <label class="input-group-text" id="order_count" for="inputGroupSelect01">수량</label>
                 </div>
-                <select class="custom-select" id="inputGroupSelect01">
+                <select class="custom-select">
                     <option selected>골라보세요</option>
                     <option value="1">10kg 1box</option>
                     <option value="2">10kg 10box</option>
@@ -66,14 +105,22 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="basic-addon1">주소:</span>
                 </div>
-                <input type="text" class="form-control" placeholder="배송은 어디로 받으실래요?" aria-label="Username"
-                    aria-describedby="basic-addon1">
+                <input type="text" class="form-control" id="order_address" placeholder="배송은 어디로 받으실래요?"
+                    aria-label="Username" aria-describedby="basic-addon1">
+            </div>
+
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">연락처:</span>
+                </div>
+                <input type="text" class="form-control" id="order_phone" placeholder="연락처를 입력해주세요."
+                    aria-label="Username" aria-describedby="basic-addon1">
             </div>
 
             <br>
             <br>
             <br>
-            <button type="button" class="btn btn-secondary btn-lg btn-block">주문하기!!</button>
+            <button onclick="order()" type="button" class="btn btn-secondary btn-lg btn-block">주문하기!!</button>
 
         </div>
     </div>
