@@ -9,8 +9,7 @@ music_info = soup.select('div.music-list-wrap > table.list-wrap > tbody > tr > t
 rank = 1
 for music in music_info:
         title = music.select_one('td.info >a.title.ellipsis').text
-        str ="title"
-        str2 = title.strip()
+        title = title.strip()
         singer = music.select_one('td.info > a.artist.ellipsis').text
         print(rank, title, singer)
         rank += 1
