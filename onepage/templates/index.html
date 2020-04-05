@@ -8,8 +8,7 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css'>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css?family=Do+Hyeon&display=swap" rel="stylesheet">
 
     <!-- JS -->
@@ -57,7 +56,38 @@
                 }
             }
         })
+    $(document).ready(function () {
+            $('#orders-box').html('');
+            listing();
+        });
 
+        function listing() {
+            $.ajax({
+                type: "GET",
+                url: "/order",
+                data: {},
+                success: function (response) {
+                    if (response['result'] == 'success') {
+                        let order = response['order'];
+                        for (let i = 0; i < order.length; i++) {
+                            make_card(order[i]['name'], order[i]['count'], order[i]['address'], order[i]['phone']);
+                        }
+                    } else {
+                        alert('주문내역을 받아오지 못했습니다');
+                    }
+                }
+            })
+        }
+
+        function make_card(name, count, address, phone) {
+            let temp_html = '<tr>\
+                                <td>'+ name + '</td>\
+                                <td>'+ count + '</td>\
+                                <td>'+ address + '</td>\
+                                <td>'+ phone + '</td>\
+                            </tr>';
+            $('#orders-box').append(temp_html);
+        }
     </script>
 
 </head>
@@ -122,6 +152,26 @@
             <br>
             <button onclick="order()" type="button" class="btn btn-secondary btn-lg btn-block">주문하기!!</button>
 
+        </div>
+        <div class="orders">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">이름</th>
+                        <th scope="col">수량</th>
+                        <th scope="col">주소</th>
+                        <th scope="col">전화번호</th>
+                    </tr>
+                </thead>
+                <tbody id="orders-box">
+                    <tr>
+                        <td>내숙제</td>
+                        <td>마이갓</td>
+                        <td>어떻혀</td>
+                        <td>어휴</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 </body>
