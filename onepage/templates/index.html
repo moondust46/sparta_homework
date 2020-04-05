@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2020년 핫한 감자</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Do+Hyeon&display=swap" rel="stylesheet">
+
+    <!-- JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        function order() {
+            let name = $('#order_name').val();
+            let count = $('#order_count').val();
+            let address = $('#order_address').val();
+            let phone = $('#order_phone').val();
+
+            if (name == '') {
+                alert('이름을 입력해주세요');
+                $('#order_name').focus()
+                return
+            } else if (count == '') {
+                alert('수량을 입력해주세요');
+                $('#order_count').focus()
+                return
+            } else if (address == '') {
+                alert('주소를 입력해주세요');
+                $('#order_address').focus()
+                return
+            }
+            else if (phone == '') {
+                alert('연락처를 입력해주세요');
+                $('#order_phone').focus()
+                return
+            }
+        }
+        $.ajax({
+            type: "POST",
+            url: "/order",
+            data: { name_give: name, count_give: count, address_give: address, phone_give: phone },
+            success: function (response) {
+                if (response['result'] == 'success') {
+                    alert('주문 완료!');
+                    window.location.reload();
+                }
+            }
+        })
+
+    </script>
+
+</head>
+
+<body>
+    <div class="box">
+        <div>
+            <img
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/%EC%84%9C%EC%82%B0_9%ED%92%88_%EA%B0%90%EC%9E%90.jpg/800px-%EC%84%9C%EC%82%B0_9%ED%92%88_%EA%B0%90%EC%9E%90.jpg">
+        </div>
+
+        <div>
+            <h2>2020년 봄을 뜨겁게 달군 감자를 팝니다</h2>
+            <h5>가격: 5,000원 / 10kg </h5>
+            <p>
+                <br>도지사도 판다는 2020년 핫한 강원도 감자가 10kg에 무려 5,000원!!
+                <br>서버가 꽥~죽을 정도로 인기만점!!
+                <br>지금 안사면 언제 살 수 있을지 모른다구요~
+            </P>
+        </div>
+
+        <div>
+            <h1>주문하기</h1>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">주문자 이름:</span>
+                </div>
+                <input type="text" class="form-control" id="order_name" placeholder="이름을 입력해주세요." aria-label="Username"
+                    aria-describedby="basic-addon1">
+            </div>
+
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <label class="input-group-text" for="inputGroupSelect01">수량</label>
+                </div>
+                <select class="custom-select" id="order_count">
+                    <option selected value>골라보세요</option>
+                    <option value="1">10kg 1box</option>
+                    <option value="2">10kg 10box</option>
+                    <option value="3">10kg 50box</option>
+                </select>
+            </div>
+
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">주소:</span>
+                </div>
+                <input type="text" class="form-control" id="order_address" placeholder="배송은 어디로 받으실래요?"
+                    aria-label="Username" aria-describedby="basic-addon1">
+            </div>
+
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">연락처:</span>
+                </div>
+                <input type="text" class="form-control" id="order_phone" placeholder="연락처를 입력해주세요."
+                    aria-label="Username" aria-describedby="basic-addon1">
+            </div>
+
+            <br>
+            <br>
+            <br>
+            <button onclick="order()" type="button" class="btn btn-secondary btn-lg btn-block">주문하기!!</button>
+
+        </div>
+    </div>
+</body>
+
+</html>

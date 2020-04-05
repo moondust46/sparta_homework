@@ -1,0 +1,9 @@
+*{
+    font-family: 'Do Hyeon', sans-serif;
+  }
+  .box {
+    margin: auto;
+    padding: auto;
+    width: 43%;
+    border: 0px solid #FFFFFF;
+  }
